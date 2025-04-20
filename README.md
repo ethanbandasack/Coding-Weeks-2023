@@ -1,39 +1,35 @@
-# Projet semaine 2 du groupe 12 : Coding Weeks jeu de la vie
+# Week 2 Project by Group 12: Coding Weeks Game of Life
 
-## Description :
+## Description:
 
-L'objet de ce projet est le développement d'une application de type "automate cellulaire" avec python.
-Nous souhaitons que l'utilisateur puisse paramétrer sa simulation le plus librement possible.
-Notre application est fournie avec une interface graphique épurée et accessible.
+The objective of this project is to develop a "cellular automaton" type application using Python. We aim for the user to be able to parameterize their simulation as freely as possible. Our application comes with a clean and accessible graphical interface.
 
-## Jeu, utilisation et interface graphique 
+## Game, Usage, and Graphical Interface
 
-Notre application permet au joueur d'effectuer des simulations d'un écosystème tout en jouant sur les variables et paramètres de départ. 
+Our application allows the player to perform simulations of an ecosystem while adjusting initial variables and parameters.
 
-Il peut choisir une grille de départ aléatoire en spécifiant la probabilité d'apparition des plantes, des champignons. Il peut même faire en sorte que le nombre d'animaux apparaisant suive une loi de poisson pour se rapprocher de la réalité.
+The user can choose a random starting grid by specifying the probability of plant and mushroom appearance. They can even make the number of animals appearing follow a Poisson distribution to better reflect reality.
 
-L'utilisateur peut aussi configurer lui même sa grille ! Il choisit une taille, le placement et le nombre des plantes, champignons, animaux. Nous avons réussi l'un de nos objectifs : l'application permet une flexibilité au niveau du paramétrage, tout en restant intelligible.
+The user can also configure their own grid! They choose the size, placement, and number of plants, mushrooms, and animals. We have achieved one of our goals: the application allows flexibility in parameterization while remaining intelligible.
 
-Voici les paramètres sur lesquel l'utilisateur peut influer : 
+Here are the parameters the user can influence:
 
-- La taille de la grille de jeu (longueur et largeur)
-- Probabilité d'apparation de la plante (Loi uniforme : pour chaque case, la probabilité d'appartion d'une plante est pplante)
-- Probabilité d'apparation d'une plante contaminée par un champignon
-- Probabilité qu'une plante infectée se fasse tuer
-- Probabilité d'apparition des animaux (loi uniforme ou de poisson)
-- Probabilité de reproduction (1 paramètre par animal, loup et mouton), loi uniforme et il faut que les conditions soient remplies
-- Jours avant qu'une plante contaminée devienne immunisée (si elle ne meurt pas)
-- Durée de l'immunité
-- Nombre de plantes voisines avant la mort par surpopulation 
-- Le nombre de FPS (frame par secondes = nombre d'actualisation de la grille par seconde)
+- Grid size (length and width)
+- Probability of plant appearance (Uniform distribution: for each cell, the probability of a plant appearing is p_plant)
+- Probability of a plant being contaminated by a mushroom
+- Probability that an infected plant will be killed
+- Probability of animal appearance (uniform or Poisson distribution)
+- Reproduction probability (1 parameter per animal, wolf and sheep), uniform distribution, and conditions must be met
+- Days before a contaminated plant becomes immune (if it doesn't die)
+- Duration of immunity
+- Number of neighboring plants before death by overpopulation
+- FPS (frames per second = number of grid updates per second)
 
-Une fois la simulation lancée, l'utilisateur peut voir la grille évoluer. 
-Il peut aussi suivre l'évolution des populations à l'aide de graphes qui s'actualisent en temps réel. 
-Enfin, il peut quitter la simulation en appuyant sur la touche ECHAP.
+Once the simulation is launched, the user can see the grid evolve. They can also track population changes using real-time updating graphs. Finally, they can exit the simulation by pressing the ESC key.
 
-#### Utilisation pratique
+### Practical Usage
 
-**Modules à installer au préalable :**
+**Modules to install beforehand:**
 - numpy
 - matplotlib
 - random
@@ -45,107 +41,101 @@ Enfin, il peut quitter la simulation en appuyant sur la touche ECHAP.
 - importlib
 - screeninfo
 
-Lancer le fichier front-end/main.py.
+Run the file `front-end/main.py`.
 
-La fenêtre affichée est la fenêtre d'accueil.
+The displayed window is the welcome window.
 
-Un clic sur le bouton "Parametres" permet d'ouvrir un menu avec les paramètres concernant les plantes (sliders). Un deuxième clic sur le bouton permet d'accéder aux paramètres concernant les animaux (sliders et boutons).
+Clicking the "Parameters" button opens a menu with plant-related parameters (sliders). A second click on the button accesses animal-related parameters (sliders and buttons).
 
-Un clic sur le bouton "Simulation" permet d'accéder, dans une nouvelle fenêtre "Simulation", à une grille générée aléatoirement selon les paramètres définis à l'accueil. Voir deux paragraphes plus bas pour plus d'informations sur la fenêtre "Simulation".
+Clicking the "Simulation" button opens a new "Simulation" window with a randomly generated grid based on the parameters set in the welcome window. See two paragraphs below for more information on the "Simulation" window.
 
-Un clic sur le bouton "Jouer" permet d'accéder à une grille vierge (dimensions choisies dans les paramètres) dans une nouvelle fenêtre "Initialisation". UUne légende est disponible à droite de l'écran pour placer et retirer plantes et animaux sur la grille :
-- Le clic gauche est utilisé pour placer les entités ou d'immuniser une plante (le nombre de tours est réinitialisé si la plante est déjà immunisée), tandis que le clic droit permet de retirer une entité ou de retirer une immunité sur une plante immunisée.
-- La molette de la souris permet de changer d'entité sélectionnée parmi :
-plante saine non immunisée, plante infectée, plante immunisée, mouton, loup.
+Clicking the "Play" button opens a blank grid (dimensions chosen in the parameters) in a new "Initialization" window. A legend is available on the right side of the screen to place and remove plants and animals on the grid:
+- The left click is used to place entities or immunize a plant (the number of turns is reset if the plant is already immunized), while the right click removes an entity or removes immunity from an immunized plant.
+- The mouse wheel changes the selected entity among: healthy non-immunized plant, infected plant, immunized plant, sheep, wolf.
 
-Redimensionner la grille est possible avec les flèches directionnelles : les flèches verticales modifient la hauteur de la grille tandis que les flèches horizontales modifient sa largeur. La grille n'est pas réinitialisée à chaque redimensionnement.
+Resizing the grid is possible with the arrow keys: vertical arrows modify the grid height, while horizontal arrows modify its width. The grid is not reset with each resizing.
 
-La touche espace permet, une fois la grille choisie dans "Jouer", de lancer une nouvelle fenêtre "Simulation" qui fera évoluer la grille selon les règles spécifiée dans les paramètres. Initialement, les générations se succèdent rapidement selon le framerate défini au tout début du fichier front-end/fenetre_simulation.py.
-- L'appui sur la touche S permet d'afficher les courbes indiquant les proportions des différentes entités sur la grille. Attention : matplotlib étant lent, la fréquence d'image sera beaucoup plus basse. Réappuyer sur la touche S retire l'affichage des courbes, rendant l'animation rapide à nouveau.
-- L'appui sur la touche C ou un clic sur le bouton "Grille" permet de n'afficher que les deux courbes en grand, sans afficher la grille. Appuyer à nouveau sur C ou cliquer sur le bouton "Grille" permet de revenir au tableau de bord avec la grille et les courbes en petit.
-- Un clic sur le bouton pause ou un appui sur la barre espace met la génération en pause. Un nouvel appui ou un nouveau clic relancera la simulation dans l'état où elle s'est arrêtée. En revanche, le clic sur le bouton "Modifier grille" permet d'accéder à nouveau à la fenêtre "Initialisation" et de modifier la grille dans l'état où elle s'est arrêtée. Voir 4 paragraphes plus haut pour plus d'informations sur la fenêtre "Initialisation".
-- L'appui sur la touche A permet de relancer une simulation aléatoire depuis le début selon les paramètres définis à l'accueil.
+The space bar, once the grid is chosen in "Play," launches a new "Simulation" window that evolves the grid according to the rules specified in the parameters. Initially, generations succeed rapidly according to the framerate defined at the beginning of the `front-end/fenetre_simulation.py` file.
+- Pressing the S key displays curves indicating the proportions of different entities on the grid. Note: Since matplotlib is slow, the frame rate will be much lower. Pressing the S key again removes the curve display, making the animation fast again.
+- Pressing the C key or clicking the "Grid" button displays only the two large curves without showing the grid. Pressing C again or clicking the "Grid" button returns to the dashboard with the grid and small curves.
+- Clicking the pause button or pressing the space bar pauses the generation. A new press or click will resume the simulation in the state where it stopped. However, clicking the "Modify Grid" button reopens the "Initialization" window to modify the grid in the state where it stopped. See four paragraphs above for more information on the "Initialization" window.
+- Pressing the A key restarts a random simulation from the beginning according to the parameters set in the welcome window.
 
-## Membres du projet : 
+## Project Members:
 
-**Membre A** : Quentin Fretault
+**Member A:** Quentin Fretault
 
-**Membre B** : Ethan Bandasack 
+**Member B:** Ethan Bandasack
 
-**Membre C** : Alexandre Dieumegard 
+**Member C:** Alexandre Dieumegard
 
-**Membre D** : Auriane Delacroix
+**Member D:** Auriane Delacroix
 
-**Membre E** : Tarik Ouadjou 
+**Member E:** Tarik Ouadjou
 
-**Membre F** : Quentin Courqueux
+**Member F:** Quentin Courqueux
 
-## Notre projet en détail : 
+## Our Project in Detail:
 
-Notre automate représente un écosystème régi par les interactions biologiques entre les êtres vivants
+Our automaton represents an ecosystem governed by biological interactions between living beings.
 
-Nous nous trouvons dans une prairie où se développent des plantes : elles subissent une attaque de mycéliums et sont mangées par des moutons qui eux-mêmes sont mangés par des loups, représentant ainsi de nombreuses interactions proie-prédateur. 
+We are in a meadow where plants develop: they are attacked by mycelium and eaten by sheep, which in turn are eaten by wolves, thus representing numerous predator-prey interactions.
 
-Nous avons une reproduction végétative des plantes : à chaque tour une probabilité p de reproduction sur une case adjacente aléatoire (la plante fille hérite des caractéristiques de la plante mère)
-Si une plante possède plus de 4 plantes à son voisinage (1 case) elle meurt car il n'y a plus assez de ressources disponibles dans le sol
+We have vegetative reproduction of plants: each turn, there is a probability p of reproduction on a random adjacent cell (the daughter plant inherits the characteristics of the mother plant). If a plant has more than 4 neighboring plants (1 cell away), it dies because there are not enough resources available in the soil.
 
-- A l'état initial, certaines plantes sont infectées par un champignon.
+- Initially, some plants are infected by a mushroom.
 
-- Transport des spores par le vent : à chaque tour, pour chaque plante située dans la portée d'une plante infectée, on a une probabilité $p_{infect}$ d'être infectée à son tour (la portée est de 1 case).
+- Spore transport by wind: each turn, for each plant within the range of an infected plant, there is a probability $p_{infect}$ of being infected in turn (the range is 1 cell).
 
-- Si une plante saine est dans la portée de plusieurs plantes infectées, alors elle "cumule" les probabilités d'être contaminée.
+- If a healthy plant is within the range of multiple infected plants, it "accumulates" the probabilities of being contaminated.
 
-- Contamination : durant un tour, la plante reçoit l'information de l'infection (stimulus) car le champignon diffuse des molécules lorsqu'il se développe. La plante reçoit l'information et développe alors un antidote : du point de vue de l'automate, rien ne se passe.
-Ensuite, lors de chaque tour qui suit, le champignon a une probabilité $p_{tuer}$ de tuer la plante. 
+- Contamination: during a turn, the plant receives the infection information (stimulus) because the mushroom diffuses molecules as it develops. The plant receives the information and then develops an antidote: from the automaton's perspective, nothing happens. Then, in each subsequent turn, the mushroom has a probability $p_{tuer}$ of killing the plant.
 
-- Résistance à court terme : si au bout de 2 tours la plante est toujours vivante, son antidote est prêt et le champignon meurt.
-La plante reste donc infectée au maximum 3 tours.
+- Short-term resistance: if after 2 turns the plant is still alive, its antidote is ready, and the mushroom dies. Therefore, the plant remains infected for a maximum of 3 turns.
 
-- Résistance à long terme : la plante guérie est maintenant immunisée contre l'infection pendant $n_{immu}$ tours. 
+- Long-term resistance: the cured plant is now immune to infection for $n_{immu}$ turns.
 
-### Seconde partie du projet : partie moutons et loups
+### Second Part of the Project: Sheep and Wolves
 
-- On ajoute à l'état initial un certain nombre de moutons et de loups disposé selon les seeds
-- Les moutons et les loups peuvent se déplacer librement sur la grille, indépendamment de l'état des cellules
-- A chaque tour les moutons et les loups ont une probabilité de mourir selon leur taux de mortalité
-- Le taux de mortalité augmente avec l'âge des moutons et des loups, mais aussi du nombre d'individus à proximité
-- Quand 2 moutons ou 2 loups sont côte à côte ils se reproduisent un nouvel individu apparait sur une des cases libres adjacentes
-- A chaque tour les moutons et les loups se déplacent d'une case aléatoirement
-- Un mouton peut aller sur une case plante et donc il la mange un loup peut aller sur une case mouton et le manger également
-- Si au bout de $n_{mort,m}$ tours le mouton n'a pas mangé de plante, il meurt de faim
-- Si au bout de $n_{mort,l}$ tours le loup n'a pas mangé de mouton, il meurt (avec $n_{mort,l}>n_{mort,m}$)
-- Reproduction : si on a assez de temps, on pourra différencier moutons mâle et femelle ainsi que loups mâle et femelle
+- Initially, a certain number of sheep and wolves are added, arranged according to the seeds.
+- Sheep and wolves can move freely on the grid, independently of the cell states.
+- Each turn, sheep and wolves have a probability of dying according to their mortality rate.
+- The mortality rate increases with the age of the sheep and wolves, as well as the number of nearby individuals.
+- When 2 sheep or 2 wolves are side by side, they reproduce, and a new individual appears on one of the adjacent free cells.
+- Each turn, sheep and wolves move randomly by one cell.
+- A sheep can move to a plant cell and eat it; a wolf can move to a sheep cell and eat it.
+- If after $n_{mort,m}$ turns the sheep has not eaten a plant, it dies of starvation.
+- If after $n_{mort,l}$ turns the wolf has not eaten a sheep, it dies (with $n_{mort,l} > n_{mort,m}$).
+- Reproduction: if we have enough time, we will differentiate between male and female sheep and wolves.
 
-## Vocabulaire commun
+## Common Vocabulary
 
-- Grille : espace discrétisé représentant la prairie numériquement
+- **Grid:** discretized space representing the meadow numerically.
 
-- Cellule : équivalent de cellule dans le jeu de la vie de Conway, classe d'objet qui peut avoir comme état "vide", "plante" ou "contamine".
+- **Cell:** equivalent to a cell in Conway's Game of Life, an object class that can have states "empty," "plant," or "contaminated."
 
-- Plante saine : lorsqu'elle n'est pas infectée par un champignon.
+- **Healthy Plant:** when not infected by a mushroom.
 
-- Plante infectée : lorsqu'elle est infectée par un champignon.
+- **Infected Plant:** when infected by a mushroom.
 
-- Plante immunisée : lorsqu'elle se débarrasse de champignon, redevient saine au bout d'un certain nombre de tours.
+- **Immunized Plant:** when it gets rid of the mushroom, becomes healthy again after a certain number of turns.
 
-- Animaux : classe d'objet pouvant se déplacer sur la grille, possède un âge, un sexe et un nombre de tours depuis le dernier repas ; peut être pour l'instant un loup ou un mouton.
+- **Animals:** object class that can move on the grid, has an age, gender, and number of turns since the last meal; can currently be a wolf or a sheep.
 
-## Project status / Feuille de route 
+## Project Status / Roadmap
 
-Développement du MVP (Minimal Viable Product) : interface graphique minimale, peu de paramètres mais simulation fonctionnelle. OK
+- Development of the MVP (Minimal Viable Product): minimal graphical interface, few parameters but functional simulation. **OK**
 
-Mise en place des différentes fenêtres (accueil, simulation, initialisation manuelle). OK
+- Setting up different windows (welcome, simulation, manual initialization). **OK**
 
-Test du modèle simple (plantes uniquement) avec divers paramètres. OK
+- Testing the simple model (plants only) with various parameters. **OK**
 
-Développement du début de la seconde partie. OK
+- Development of the beginning of the second part. **OK**
 
-Implémentation des paramètres relatifs aux animaux. OK
+- Implementation of animal-related parameters. **OK**
 
-Test du modèle complet avec divers paramètres. OK
+- Testing the complete model with various parameters. **OK**
 
-Mise en place de l'interface utilisateur complète. OK
+- Setting up the complete user interface. **OK**
 
-Implémentation de courbes. OK
-
-Tentative de faire varier l'influence des voisins dans la surpopulation
+- Implementation of curves. **OK**
