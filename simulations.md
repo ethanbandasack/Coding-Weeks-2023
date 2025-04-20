@@ -1,100 +1,86 @@
-# Simulations Types
+# Simulation Types
 
-Ce document a pour objectif de recenser les paramètres des simulations types. 
-Ces simulations ont pour but de montrer le fonctionnement des nombreuses règles et outils de notre application.
+This document aims to list the parameters of typical simulations. These simulations are intended to demonstrate the functioning of the numerous rules and tools of our application.
 
-## Simulation avec des plantes uniquement 
+## Simulation with Plants Only
 
-On se place pour le moment dans une grille 10x10 pour toutes les prochaines simulations
+For the moment, we are using a 10x10 grid for all the following simulations.
 
-#### Reproduction sans champignons ni surpopulation (https://youtu.be/kXpQcrvfNBc) 
+### Reproduction without Mushrooms or Overpopulation (https://youtu.be/kXpQcrvfNBc)
 
-- On ne place que des plantes initialement, aucun champignon
+- Only plants are placed initially, no mushrooms.
+- Reproduction probability: 0.5 > 0.
+- Overpopulation death: 9 => no death by overpopulation.
 
-- Probabilité de reproduction : 0.5 > 0 
+### Effect of Overpopulation (https://youtu.be/ib9Fmade2Zw)
 
-- Mort de surpopulation : 9 => pas de mort par surpopulation 
+- Only plants are placed initially, no mushrooms.
+- Reproduction probability: 0.5 > 0.
+- Overpopulation death: 4 => death by overpopulation.
 
-#### Effet de la surpopulation (https://youtu.be/ib9Fmade2Zw)
+### Effect of Contamination (https://youtu.be/07GRIvuv3Tw)
 
-- On ne place que des plantes initialement, aucun champignon
+We want to observe a "stable" predator-prey model.
 
-- Probabilité de reproduction : 0.5 > 0 
+- Plants placed with mushrooms.
+- Kill probability: 0.3.
+- Infection probability: 0.8.
+- Reproduction probability: 0.35.
+- No immunity.
+- Overpopulation death: 6.
 
-- Mort de surpopulation : 4 => Mort par surpopulation 
+We observe stability. We notice that the cells at the edges rarely die (only by infection because they cannot die from overpopulation, not enough neighbors).
 
-#### Effet de contamination (https://youtu.be/07GRIvuv3Tw)
+### Effect of Immunity (https://youtu.be/6nbiHfFJnlc)
 
-On veut observer un modèle proie-prédateur "stable"
+We want to observe the immunity parameters.
 
-- Placement des plantes avec champignons
-- Probabilité tuer : 0.3
-- Probabilité d'infection : 0.8
-- Probabilité de reproduction 0.35
-- Pas d'immunité 
-- Mort de surpopulation : 6
+I keep the same parameters while activating immunity.
 
-On a bien une stabilité. On remarque que les cellules au bord meurent rarement (uniquement par infection car elle ne peuvent pas mourir de surpopulation, pas assez de voisins)
+- Days before immunity: 5.
+- Days of immunity: 5.
 
-#### Effet de l'immunité (https://youtu.be/6nbiHfFJnlc)
+We observe that the plants manage to eliminate the mushrooms.
 
-On veut observer les paramètres d'immunités. 
+### Scenario of Mushroom Domination (https://youtu.be/DNYaljQ7eGw)
 
-Je conserve les mêmes paramètres, tout en activant l'immunité 
+If the plants take too long to develop immunity, they will be eradicated.
 
-- Jours avant d'immunité : 5 
-- Jours d'immunité : 5
+- Kill probability: 0.3.
+- Infection probability: 0.8.
+- Reproduction probability: 0.5.
+- Days before immunity: 100.
+- Days of immunity: 5.
+- No death by overpopulation.
 
-On constate que les plantes arrivent à éliminer les champignons
+### Scenario of Repopulation (https://youtu.be/s1d4Va8ndwY)
 
-#### Scénario de domination des champignons (https://youtu.be/DNYaljQ7eGw)
+Aesthetic scenario: the mushrooms cannot kill the plants before immunity: everything repopulates.
 
-Si les plantes mettent trop de temps avant de développer une immunité, elle vont se faire éradiquer 
+- Kill probability: 0.02 (very low).
 
-- Probabilité tuer : 0.3
-- Probabilité d'infection : 0.8
-- Probabilité de reproduction : 0.5
-- Jours avant immunité : 100
-- Jours d'immunité : 5
-- Pas de mort par surpopulation
+## Simulation with Animals Only
 
-#### Scénario de repopulation (https://youtu.be/s1d4Va8ndwY)
+### Explosion of the Sheep Population without Predators (https://youtu.be/S2sDYEvGgO8)
 
-Scénario esthétique : les champignons n'arrivent pas à tuer les plantes avant l'immunité : tout se repeuple 
+No predators, the sheep live happily and have many offspring! However, food resources become increasingly scarce, and overpopulation suffocates them, so the number of sheep cannot diverge.
 
-- Probailité de tuer : 0.02 (très faible)
+### Wolves Eat Starving Sheep (https://youtu.be/q2vRDBqhrS0)
 
-## Simulation avec des animaux uniquement 
+We show the functioning of wolf survival by eating sheep. The wolves die only of old age in the end because there are too few to reproduce.
 
-#### Explosion de la population de moutons sans prédateur (https://youtu.be/S2sDYEvGgO8)
+- Maximum age of sheep: 100.
+- Maximum age of wolves: 100.
+- Number before overpopulation: 50.
+- Famine: 75.
+- Movement probability: 0.5.
+- Wolf reproduction probability: 0.3.
+- Sheep reproduction probability: 0.3.
 
-Pas de prédateurs, les moutons vivent heureux et ont beacoup d'enfants !
-Seulement, les ressources en nourritures se font de plus en plus rares et la surpopulation les étouffent, ainsi le nombre de mouton ne peut pas diverger
+### Predator-Prey Model (https://youtu.be/IySNyOm4cUY)
 
-#### Les loups mangent les moutons affamés (https://youtu.be/q2vRDBqhrS0)
+We consider a scenario without contaminated plants but with plants to feed the sheep. In this simulation, it is difficult to predict which population will survive, as wolves can die of old age or starvation if there are not enough sheep. In the proposed video, we observe a certain balance until the death of all the wolves. The sheep live peacefully but are too few to reform a herd.
 
-On montre le fonctionnement de la survie des loups qui mangent les moutons.
-Les loups meurent juste d'âge à la fin car ils sont trop peu pour se reproduire 
+### All Parameters Activated (https://youtu.be/7pwCT4WDW98)
 
-- Age max mouton : 100
-- Age max loup : 100
-- Nombre avant surpop : 50
-- Famine : 75
-- Proba déplacement : 0.5
-- Proba repro loup : 0.3
-- Proba repro mout : 0.3
-
-#### Modèle proie-prédateur (https://youtu.be/IySNyOm4cUY)
-
-On se place dans un cadre sans plantes contaminées, mais on prend des plantes pour pouvoir nourrir les moutons 
-Dans cette simulation il est compliqué de prévoir quelle population va rester en vie, puisque les loups peuvent mourir d'âge ou de faim s'il n'y a plus assez de moutons.
-Dans la vidéo proposée on constate un certain équilibre, jusqu'à la mort de tous les loups. Les moutons vivent paisiblement mais sont trop peu pour reformer un troupeau.
-
-#### Tous les paramètres sont activés (https://youtu.be/7pwCT4WDW98)
-
-Ici il est vraiment difficile de comprendre ce qu'il se passe, il y a énormément d'intéractions entre les différents objets.
-
-
-
-
-
+Here, it is really difficult to understand what is happening, as there are many interactions between the different objects.
